@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="../img/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+  </head>
+  <body class="flex">
+    <!-- Tempat sidebar masuk -->
+    <div id="sidebar">
+      <!-- Sidebar -->
+      <aside
+        class="w-72 bg-white text-gray flex flex-col min-h-screen max-h-screen overflow-y-auto"
+      >
+        <div class="p-4 text-2xl font-bold mt-[60px]"></div>
+
+        <nav class="flex-1 p-2 space-y-2">
+          <!-- Dashboard -->
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Dashboard</a
+          >
+          <!-- MENU SICAKEP -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicakep</div>
+
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Indikator Kinerja LLDIKTI</a
+          >
+          <!-- Indikator Kinerja -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Indikator Kinerja PT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Universitas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Tambahan</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Bidang</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Pimpinan Baru</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Monitoring Dan Evaluasi</a
+              >
+            </div>
+          </div>
+
+          <!-- MENU SICANTIK -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicantik</div>
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Belanja Pegawai</a
+          >
+          <!-- Penganggaran RKAT -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Penganggaran RKAT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Pembuatan RKAT</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Perancangan</a
+              >
+            </div>
+          </div>
+          <!-- Laporan Keuangan -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Laporan Keuangan</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Rekap Unit/Fakultas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Rekap RKAT View</a
+              >
+            </div>
+          </div>
+          <!-- Breakdown Anggaran -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Breakdown Anggaran</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Buat Breakdown</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Rekap Unit/Fakultas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Pengajuan diluar RKAT</a
+              >
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Konten utama -->
+    <main
+      class="w-full flex-1 bg-[#F5F5F5] relative p-6 pt-[120px] text-gray-700 h-screen overflow-y-auto"
+    >
+      <header
+        class="border border-2 w-full bg-white flex justify-between items-center p-4 fixed top-0 right-0"
+      >
+        <div class="w-[250px]">
+          <img
+            src="https://sicantik.unwahas.ac.id/assets/images/logobaru3duwh.png"
+            alt=""
+          />
+        </div>
+        <div class="relative">
+          <div id="userButton" class="rounded p-2 cursor-pointer">
+            <div class="flex items-center gap-1">
+              <img src="../img/logo.png" alt="" class="w-[25px] h-[29px]" />
+              <span>Yayasan</span>
+              <svg
+                class="w-4 h-4 transform transition-transform rotate-90"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            id="userDropdown"
+            class="bg-white w-full rounded absolute right-0 top-[38px] mt-2 hidden"
+          >
+            <a
+              href=""
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Profile
+            </a>
+            <a
+              href="/"
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Title -->
+      <span class="font-bold text-xl">Dashboard</span>
+
+      <!-- Content -->
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <p class="text-gray-600">
+          Download manual book
+          <a href="" class="text-[#02d4d8] font-semibold">disini</a>, Download
+          manual book Break down anggaran
+          <a href="" class="text-[#02d4d8] font-semibold">disini</a>.
+        </p>
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <h1 class="text-xl font-semibold">Selamat Datang Di</h1>
+        <p class="font-semibold">
+          Sistem Informasi Capaian Kinerja Perguruan Tinggi & Perencanaan
+          Keuangan Elektronik Berbasis Kinerja
+        </p>
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <h1 class="text-center font-bold text-xl mb-7">
+          Laju Anggaran Unit/Fakultas Tahun 2025
+        </h1>
+        <div class="overflow-x-auto">
+          <table
+            class="min-w-full border border-gray-200 text-sm text-gray-700"
+          >
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th class="px-4 py-2 border">No</th>
+                <th class="px-4 py-2 border">Kode</th>
+                <th class="px-4 py-2 border">Nama</th>
+                <th class="px-4 py-2 border">Bulan Ajuan</th>
+                <th class="px-4 py-2 border">Order</th>
+                <th class="px-4 py-2 border">No Kendali</th>
+                <th class="px-4 py-2 border">Keterangan</th>
+                <th class="px-4 py-2 border">Perencanaan</th>
+                <th class="px-4 py-2 border">Keuangan</th>
+                <th class="px-4 py-2 border">Yayasan</th>
+                <th class="px-4 py-2 border">Realisasi (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">1</td>
+                <td class="px-4 py-2 border">1316.06</td>
+                <td class="px-4 py-2 border">
+                  Pengadaan kvm switch vga Aten 8 Port
+                </td>
+                <td class="px-4 py-2 border">Januari</td>
+                <td class="px-4 py-2 border">1</td>
+                <td class="px-4 py-2 border text-center">238</td>
+                <td class="px-4 py-2 border">VGA</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">2</td>
+                <td class="px-4 py-2 border">1316.06</td>
+                <td class="px-4 py-2 border">
+                  Instalasi Jaringan Internet gedung perpus baru universitas
+                </td>
+                <td class="px-4 py-2 border">Januari</td>
+                <td class="px-4 py-2 border">6</td>
+                <td class="px-4 py-2 border text-center">238</td>
+                <td class="px-4 py-2 border">VGA</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">3</td>
+                <td class="px-4 py-2 border">1316.06</td>
+                <td class="px-4 py-2 border">
+                  Pengadaan POWER SUPPLY 1000W AURA 80+ GOLD ATX 3.0 - PCIe 5.0
+                </td>
+                <td class="px-4 py-2 border">Januari</td>
+                <td class="px-4 py-2 border">3</td>
+                <td class="px-4 py-2 border text-center">238</td>
+                <td class="px-4 py-2 border">VGA</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">4</td>
+                <td class="px-4 py-2 border">1316.06</td>
+                <td class="px-4 py-2 border">Pengadaan Memori ECC 32 GB</td>
+                <td class="px-4 py-2 border">Januari</td>
+                <td class="px-4 py-2 border">9</td>
+                <td class="px-4 py-2 border text-center">238</td>
+                <td class="px-4 py-2 border">VGA</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const userButton = document.getElementById("userButton");
+      const userDropdown = document.getElementById("userDropdown");
+
+      userButton.addEventListener("mouseover", () => {
+        userDropdown.classList.remove("hidden");
+      });
+      userButton.addEventListener("mouseleave", (e) => {
+        if (!userDropdown.matches(":hover")) {
+          userDropdown.classList.add("hidden");
+        }
+      });
+      userDropdown.addEventListener("mouseleave", () => {
+        userDropdown.classList.add("hidden");
+      });
+    </script>
+  </body>
+</html>
