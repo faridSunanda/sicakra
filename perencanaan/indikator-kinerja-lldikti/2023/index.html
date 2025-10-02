@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="/img/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <title>Indikator Kinerja LLDIKTI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="flex text-sm">
+    <!-- Tempat sidebar masuk -->
+    <div id="sidebar">
+      <!-- Sidebar -->
+      <aside
+        class="w-72 bg-white text-gray flex flex-col min-h-screen max-h-screen overflow-y-auto"
+      >
+        <div class="p-4 text-2xl font-bold mt-[60px]"></div>
+
+        <nav class="flex-1 p-2 space-y-2">
+          <!-- Dashboard -->
+          <a
+            href="/perencanaan"
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Dashboard</a
+          >
+          <!-- MENU SICAKEP -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicakep</div>
+          <!-- Master -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Master</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Manajemen Role</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Manajemen User</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Semester</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Unit/Fakultas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Kegiatan Tridharma</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Kerja Sama</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Rekan Kerja Sama</a
+              >
+            </div>
+          </div>
+
+          <a
+            href="/perencanaan/indikator-kinerja-lldikti"
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Indikator Kinerja LLDIKTI</a
+          >
+          <!-- Indikator Kinerja -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Indikator Kinerja PT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Universitas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Tambahan</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Bidang</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Pimpinan Baru</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Monitoring Dan Evaluasi</a
+              >
+            </div>
+          </div>
+
+          <!-- MENU SICANTIK -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicantik</div>
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Belanja Pegawai</a
+          >
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Breakdown Anggaran</a
+          >
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Pagu Anggaran</a
+          >
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Pengajuan Diluar RKAT</a
+          >
+          <!-- Data Master -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Data Master</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Akun</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Kelompok</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >RKAT</a
+              >
+            </div>
+          </div>
+          <!-- Penganggaran RKAT -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Penganggaran RKAT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >List Ajuan</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >List Anggaran</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Laju Pengajuan diluar RKAT</a
+              >
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Konten utama -->
+    <main
+      class="w-full flex-1 bg-[#F5F5F5] relative p-6 pt-[120px] text-gray-700 h-screen overflow-y-auto"
+    >
+      <header
+        class="border border-2 w-full bg-white flex justify-between items-center p-4 fixed top-0 right-0"
+      >
+        <div class="w-[250px]">
+          <img
+            src="https://sicantik.unwahas.ac.id/assets/images/logobaru3duwh.png"
+            alt=""
+          />
+        </div>
+        <div class="relative">
+          <div id="userButton" class="rounded p-2 cursor-pointer">
+            <div class="flex items-center gap-1">
+              <img
+                src="https://sicantik.unwahas.ac.id/assets/images/Unwahas.png"
+                alt=""
+                class="w-[25px] h-[29px]"
+              />
+              <span>Perencanaan</span>
+              <svg
+                class="w-4 h-4 transform transition-transform rotate-90"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            id="userDropdown"
+            class="bg-white w-full rounded absolute right-0 top-[38px] mt-2 hidden"
+          >
+            <a
+              href=""
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Profile
+            </a>
+            <a
+              href="/"
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Title -->
+      <span class="font-bold text-xl">Indikator Kinerja LLDIKTI</span>
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <!--  -->
+        <table class="w-full border border-gray-200 text-sm">
+          <thead class="bg-gray-100">
+            <tr>
+              <th
+                class="border border-gray-200 px-4 py-2 text-left"
+                rowspan="2"
+              >
+                IKU
+              </th>
+              <th
+                class="border border-gray-200 px-4 py-2 text-left"
+                rowspan="2"
+              >
+                INDIKATOR KINERJA
+              </th>
+              <th
+                class="border border-gray-200 px-4 py-2 text-center"
+                rowspan="2"
+              >
+                TARGET 2023
+              </th>
+              <th
+                class="border border-gray-200 px-4 py-2 text-center"
+                colspan="2"
+              >
+                TARGET
+              </th>
+            </tr>
+            <tr>
+              <th class="border border-gray-200 px-4 py-2 text-center">
+                SEMESTER GASAL
+              </th>
+              <th class="border border-gray-200 px-4 py-2 text-center">
+                SEMESTER GENAP
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- IKU 1 -->
+            <tr>
+              <td
+                class="border border-gray-200 px-4 py-2 text-center align-top"
+                rowspan="4"
+              >
+                1
+              </td>
+              <td class="border border-gray-200 px-4 py-2 font-semibold">
+                Persentase lulusan S1/D4 dan D3 yang berhasil:
+              </td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                a. Mendapatkan pekerjaan yang layak
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="60"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="40"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                b. Melanjutkan studi
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="30"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                c. Menjadi wiraswasta
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="6"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="4"
+                />
+              </td>
+            </tr>
+
+            <!-- IKU 2 -->
+            <tr>
+              <td
+                class="border border-gray-200 px-4 py-2 text-center align-top"
+                rowspan="4"
+              >
+                2
+              </td>
+              <td class="border border-gray-200 px-4 py-2 font-semibold">
+                Persentase lulusan S1/D4 dan D3 yang berhasil:
+              </td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                a. Mendapatkan pekerjaan yang layak
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="60"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="40"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                b. Melanjutkan studi
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="30"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                c. Menjadi wiraswasta
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="6"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="4"
+                />
+              </td>
+            </tr>
+
+            <!-- IKU 3 -->
+            <tr>
+              <td
+                class="border border-gray-200 px-4 py-2 text-center align-top"
+                rowspan="4"
+              >
+                3
+              </td>
+              <td class="border border-gray-200 px-4 py-2 font-semibold">
+                Persentase lulusan S1/D4 dan D3 yang berhasil:
+              </td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+              <td class="border border-gray-200"></td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                a. Mendapatkan pekerjaan yang layak
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="60"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="40"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                b. Melanjutkan studi
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="30"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="20"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-2">
+                c. Menjadi wiraswasta
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="10"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="6"
+                />
+              </td>
+              <td class="border border-gray-200 text-center">
+                <input
+                  type="text"
+                  readonly
+                  class="bg-gray-100 border rounded w-24 px-2 py-1 text-center"
+                  value="4"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      const userButton = document.getElementById("userButton");
+      const userDropdown = document.getElementById("userDropdown");
+
+      userButton.addEventListener("mouseover", () => {
+        userDropdown.classList.remove("hidden");
+      });
+      userButton.addEventListener("mouseleave", (e) => {
+        if (!userDropdown.matches(":hover")) {
+          userDropdown.classList.add("hidden");
+        }
+      });
+      userDropdown.addEventListener("mouseleave", () => {
+        userDropdown.classList.add("hidden");
+      });
+
+      // Data contoh
+      const data = [
+        { nama: "Rapat", total: 15000000, realisasi: 3000000 },
+        { nama: "Honorarium Mengajar", total: 20000000, realisasi: 8000000 },
+        { nama: "Honorarium Koreksi", total: 10000000, realisasi: 2500000 },
+        { nama: "Honorarium Praktikum", total: 12000000, realisasi: 6000000 },
+        { nama: "Ujian Tengah Semester", total: 8000000, realisasi: 2000000 },
+        { nama: "Ujian Akhir Semester", total: 10000000, realisasi: 4000000 },
+      ];
+
+      // Hitung persentase realisasi & sisa
+      const labels = data.map((item) => item.nama);
+      const realisasiPersen = data.map((item) =>
+        ((item.realisasi / item.total) * 100).toFixed(1)
+      );
+      const sisaPersen = data.map((item) =>
+        (100 - (item.realisasi / item.total) * 100).toFixed(1)
+      );
+
+      const ctx = document.getElementById("anggaranChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Realisasi (%)",
+              data: realisasiPersen,
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Sisa (%)",
+              data: sisaPersen,
+              backgroundColor: "rgba(156, 163, 175, 0.7)", // abu-abu
+              borderColor: "rgba(156, 163, 175, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function (value) {
+                  return value + "%";
+                },
+              },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let idx = context.dataIndex;
+                  let item = data[idx];
+                  if (context.dataset.label === "Realisasi (%)") {
+                    return [
+                      `Realisasi: Rp${item.realisasi.toLocaleString()}`,
+                      `Persen: ${realisasiPersen[idx]}%`,
+                    ];
+                  } else {
+                    let sisa = item.total - item.realisasi;
+                    return [
+                      `Sisa: Rp${sisa.toLocaleString()}`,
+                      `Persen: ${sisaPersen[idx]}%`,
+                    ];
+                  }
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

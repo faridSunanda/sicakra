@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <link rel="icon" href="../img/logo.png" type="image/x-icon" />
+    <link rel="icon" href="/img/logo.png" type="image/x-icon" />
     <meta charset="UTF-8" />
-    <title>Dashboard</title>
+    <title>Indikator Kinerja LLDIKTI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="flex text-sm">
     <!-- Tempat sidebar masuk -->
@@ -22,7 +23,7 @@
         <nav class="flex-1 p-2 space-y-2">
           <!-- Dashboard -->
           <a
-            href=""
+            href="/perencanaan"
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Dashboard</a
           >
@@ -91,7 +92,7 @@
           </div>
 
           <a
-            href="/perencanaan/indikator-kinerja-lldikti"
+            href="/perencanaan//indikator-kinerja-lldikti"
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Indikator Kinerja LLDIKTI</a
           >
@@ -155,7 +156,7 @@
             >Belanja Pegawai</a
           >
           <a
-            href="/perencanaan/breakdown-anggaran"
+            href=""
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Breakdown Anggaran</a
           >
@@ -314,104 +315,175 @@
       </header>
 
       <!-- Title -->
-      <span class="font-bold text-xl">Dashboard</span>
-
-      <!-- Content -->
+      <span class="font-bold text-xl">Indikator Kinerja LLDIKTI</span>
 
       <!-- Tabel -->
       <section class="bg-white p-6 rounded mt-7 shadow">
-        <p class="text-gray-600">
-          Download manual book
-          <a href="" class="text-[#02d4d8] font-semibold">disini</a>, Download
-          manual book Break down anggaran
-          <a href="" class="text-[#02d4d8] font-semibold">disini</a>.
-        </p>
-        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
-        <h1 class="text-xl font-semibold">Selamat Datang Di</h1>
-        <p class="font-semibold">
-          Sistem Informasi Capaian Kinerja Perguruan Tinggi & Perencanaan
-          Keuangan Elektronik Berbasis Kinerja
-        </p>
-        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
-        <h1 class="text-center font-bold text-xl mb-7">
-          Laju Anggaran Unit/Fakultas Tahun 2025
-        </h1>
+        <!--  -->
+        <div class="flex items-center justify-between mb-4">
+          <button
+            class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+          >
+            + Tambah
+          </button>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="border px-3 py-2 rounded"
+          />
+        </div>
+
+        <div class="flex items-center gap-2 mb-2">
+          <label>Show</label>
+          <select class="border rounded px-2 py-1">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+          </select>
+          <span>entries</span>
+        </div>
+
         <div class="overflow-x-auto">
           <table
-            class="min-w-full border border-gray-200 text-sm text-gray-700"
+            class="min-w-full border border-gray-200 rounded-lg shadow-sm border-r-0 border-l-0"
           >
-            <thead class="bg-white text-gray-900">
+            <thead class="bg-gray-100">
               <tr>
-                <th class="px-4 py-2 border">No</th>
-                <th class="px-4 py-2 border">Kode</th>
-                <th class="px-4 py-2 border">Nama</th>
-                <th class="px-4 py-2 border">Bulan Ajuan</th>
-                <th class="px-4 py-2 border">Order</th>
-                <th class="px-4 py-2 border">No Kendali</th>
-                <th class="px-4 py-2 border">Keterangan</th>
-                <th class="px-4 py-2 border">Perencanaan</th>
-                <th class="px-4 py-2 border">Keuangan</th>
-                <th class="px-4 py-2 border">Yayasan</th>
-                <th class="px-4 py-2 border">Realisasi (%)</th>
+                <th
+                  class="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+                >
+                  No
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+                >
+                  Tahun
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+                >
+                  Semester
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+                >
+                  Dokumen
+                </th>
+                <th
+                  class="px-4 py-3 text-left text-sm font-semibold text-gray-700"
+                >
+                  Aksi
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
-                <td class="px-4 py-2 border text-center">1</td>
-                <td class="px-4 py-2 border">1316.06</td>
-                <td class="px-4 py-2 border">
-                  Pengadaan kvm switch vga Aten 8 Port
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 py-2 border-b">1</td>
+                <td
+                  class="px-4 py-2 border-b text-blue-600 hover:underline cursor-pointer"
+                >
+                  <a href="/perencanaan/indikator-kinerja-lldikti/2023">2023</a>
                 </td>
-                <td class="px-4 py-2 border">Januari</td>
-                <td class="px-4 py-2 border">1</td>
-                <td class="px-4 py-2 border text-center">238</td>
-                <td class="px-4 py-2 border">VGA</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
-              </tr>
-              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
-                <td class="px-4 py-2 border text-center">2</td>
-                <td class="px-4 py-2 border">1316.06</td>
-                <td class="px-4 py-2 border">
-                  Instalasi Jaringan Internet gedung perpus baru universitas
+                <td class="px-4 py-2 border-b">20332</td>
+                <td class="px-4 py-2 border-b"></td>
+                <td class="px-4 py-2 border-b flex gap-2">
+                  <button
+                    class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-2 rounded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z"
+                      />
+                      <path
+                        d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white px-2 py-2 rounded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
                 </td>
-                <td class="px-4 py-2 border">Januari</td>
-                <td class="px-4 py-2 border">6</td>
-                <td class="px-4 py-2 border text-center">238</td>
-                <td class="px-4 py-2 border">VGA</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
               </tr>
-              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
-                <td class="px-4 py-2 border text-center">3</td>
-                <td class="px-4 py-2 border">1316.06</td>
-                <td class="px-4 py-2 border">
-                  Pengadaan POWER SUPPLY 1000W AURA 80+ GOLD ATX 3.0 - PCIe 5.0
+              <tr class="hover:bg-gray-50">
+                <td class="px-4 py-2 border-b">2</td>
+                <td
+                  class="px-4 py-2 border-b text-blue-600 hover:underline cursor-pointer"
+                >
+                  2024
                 </td>
-                <td class="px-4 py-2 border">Januari</td>
-                <td class="px-4 py-2 border">3</td>
-                <td class="px-4 py-2 border text-center">238</td>
-                <td class="px-4 py-2 border">VGA</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
-              </tr>
-              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
-                <td class="px-4 py-2 border text-center">4</td>
-                <td class="px-4 py-2 border">1316.06</td>
-                <td class="px-4 py-2 border">Pengadaan Memori ECC 32 GB</td>
-                <td class="px-4 py-2 border">Januari</td>
-                <td class="px-4 py-2 border">9</td>
-                <td class="px-4 py-2 border text-center">238</td>
-                <td class="px-4 py-2 border">VGA</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border">Rp 12.000.000,00</td>
-                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border-b">20441</td>
+                <td class="px-4 py-2 border-b"></td>
+                <td class="px-4 py-2 flex gap-2">
+                  <button
+                    class="bg-yellow-400 hover:bg-yellow-500 text-white px-2 py-2 rounded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        d="M13.488 2.513a1.75 1.75 0 0 0-2.475 0L6.75 6.774a2.75 2.75 0 0 0-.596.892l-.848 2.047a.75.75 0 0 0 .98.98l2.047-.848a2.75 2.75 0 0 0 .892-.596l4.261-4.262a1.75 1.75 0 0 0 0-2.474Z"
+                      />
+                      <path
+                        d="M4.75 3.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h6.5c.69 0 1.25-.56 1.25-1.25V9A.75.75 0 0 1 14 9v2.25A2.75 2.75 0 0 1 11.25 14h-6.5A2.75 2.75 0 0 1 2 11.25v-6.5A2.75 2.75 0 0 1 4.75 2H7a.75.75 0 0 1 0 1.5H4.75Z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white px-2 py-2 rounded"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                      class="size-4"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5 3.25V4H2.75a.75.75 0 0 0 0 1.5h.3l.815 8.15A1.5 1.5 0 0 0 5.357 15h5.285a1.5 1.5 0 0 0 1.493-1.35l.815-8.15h.3a.75.75 0 0 0 0-1.5H11v-.75A2.25 2.25 0 0 0 8.75 1h-1.5A2.25 2.25 0 0 0 5 3.25Zm2.25-.75a.75.75 0 0 0-.75.75V4h3v-.75a.75.75 0 0 0-.75-.75h-1.5ZM6.05 6a.75.75 0 0 1 .787.713l.275 5.5a.75.75 0 0 1-1.498.075l-.275-5.5A.75.75 0 0 1 6.05 6Zm3.9 0a.75.75 0 0 1 .712.787l-.275 5.5a.75.75 0 0 1-1.498-.075l.275-5.5a.75.75 0 0 1 .786-.711Z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div
+          class="flex justify-between items-center mt-4 text-sm text-gray-600"
+        >
+          <span>Showing 1 to 2 of 2 entries</span>
+          <div class="flex items-center">
+            <button class="px-3 py-1 border bg-gray-200">Previous</button>
+            <button
+              class="px-3 py-[5px] border-t border-b bg-blue-600 text-white"
+            >
+              1
+            </button>
+            <button class="px-3 py-1 border bg-gray-200">Next</button>
+          </div>
         </div>
       </section>
     </main>
@@ -430,6 +502,85 @@
       });
       userDropdown.addEventListener("mouseleave", () => {
         userDropdown.classList.add("hidden");
+      });
+
+      // Data contoh
+      const data = [
+        { nama: "Rapat", total: 15000000, realisasi: 3000000 },
+        { nama: "Honorarium Mengajar", total: 20000000, realisasi: 8000000 },
+        { nama: "Honorarium Koreksi", total: 10000000, realisasi: 2500000 },
+        { nama: "Honorarium Praktikum", total: 12000000, realisasi: 6000000 },
+        { nama: "Ujian Tengah Semester", total: 8000000, realisasi: 2000000 },
+        { nama: "Ujian Akhir Semester", total: 10000000, realisasi: 4000000 },
+      ];
+
+      // Hitung persentase realisasi & sisa
+      const labels = data.map((item) => item.nama);
+      const realisasiPersen = data.map((item) =>
+        ((item.realisasi / item.total) * 100).toFixed(1)
+      );
+      const sisaPersen = data.map((item) =>
+        (100 - (item.realisasi / item.total) * 100).toFixed(1)
+      );
+
+      const ctx = document.getElementById("anggaranChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Realisasi (%)",
+              data: realisasiPersen,
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Sisa (%)",
+              data: sisaPersen,
+              backgroundColor: "rgba(156, 163, 175, 0.7)", // abu-abu
+              borderColor: "rgba(156, 163, 175, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function (value) {
+                  return value + "%";
+                },
+              },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let idx = context.dataIndex;
+                  let item = data[idx];
+                  if (context.dataset.label === "Realisasi (%)") {
+                    return [
+                      `Realisasi: Rp${item.realisasi.toLocaleString()}`,
+                      `Persen: ${realisasiPersen[idx]}%`,
+                    ];
+                  } else {
+                    let sisa = item.total - item.realisasi;
+                    return [
+                      `Sisa: Rp${sisa.toLocaleString()}`,
+                      `Persen: ${sisaPersen[idx]}%`,
+                    ];
+                  }
+                },
+              },
+            },
+          },
+        },
       });
     </script>
   </body>
