@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <link rel="icon" href="/img/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <title>Breakdown Anggaran</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="flex text-sm">
+    <!-- Tempat sidebar masuk -->
+    <div id="sidebar">
+      <!-- Sidebar -->
+      <aside
+        class="w-72 bg-white text-gray flex flex-col min-h-screen max-h-screen overflow-y-auto"
+      >
+        <div class="p-4 text-2xl font-bold mt-[60px]"></div>
+
+        <nav class="flex-1 p-2 space-y-2">
+          <!-- Dashboard -->
+          <a
+            href="/perencanaan"
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Dashboard</a
+          >
+          <!-- MENU SICAKEP -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicakep</div>
+
+          <a
+            href="#"
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Indikator Kinerja LLDIKTI</a
+          >
+          <!-- Indikator Kinerja -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Indikator Kinerja PT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Universitas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Indikator Kinerja Tambahan</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Bidang</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Pimpinan Baru</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Monitoring Dan Evaluasi</a
+              >
+            </div>
+          </div>
+
+          <!-- MENU SICANTIK -->
+          <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicantik</div>
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Belanja Pegawai</a
+          >
+          <a
+            href="/perencanaan/breakdown-anggaran"
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Breakdown Anggaran</a
+          >
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Pagu Anggaran</a
+          >
+          <a
+            href=""
+            class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >Pengajuan Diluar RKAT</a
+          >
+          <!-- Data Master -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Data Master</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Akun</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Kelompok</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >RKAT</a
+              >
+            </div>
+          </div>
+          <!-- Penganggaran RKAT -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Penganggaran RKAT</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >List Ajuan</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >List Anggaran</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Laju Pengajuan diluar RKAT</a
+              >
+            </div>
+          </div>
+        </nav>
+      </aside>
+    </div>
+
+    <!-- Konten utama -->
+    <main
+      class="w-full flex-1 bg-[#F5F5F5] relative p-6 pt-[120px] text-gray-700 h-screen overflow-y-auto"
+    >
+      <header
+        class="border border-2 w-full bg-white flex justify-between items-center p-4 fixed top-0 right-0"
+      >
+        <div class="w-[250px]">
+          <img
+            src="https://sicantik.unwahas.ac.id/assets/images/logobaru3duwh.png"
+            alt=""
+          />
+        </div>
+        <div class="relative">
+          <div id="userButton" class="rounded p-2 cursor-pointer">
+            <div class="flex items-center gap-1">
+              <img
+                src="https://sicantik.unwahas.ac.id/assets/images/Unwahas.png"
+                alt=""
+                class="w-[25px] h-[29px]"
+              />
+              <span>Perencanaan</span>
+              <svg
+                class="w-4 h-4 transform transition-transform rotate-90"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            id="userDropdown"
+            class="bg-white w-full rounded absolute right-0 top-[38px] mt-2 hidden"
+          >
+            <a
+              href=""
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Profile
+            </a>
+            <a
+              href="/"
+              class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              Logout
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Title -->
+      <span class="font-bold text-xl">Form Breakdown Anggaran</span>
+
+      <!-- Content -->
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <h1 class="text-center font-bold text-xl mb-7">
+          REALISASI PENERIMAAN DAN RENCANA PENARIKAN DANA <br />
+          Fakultas FARMASI Tahun <br />
+          2025
+        </h1>
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <span
+          class="font-semibold bg-gradient-to-r from-[#cefffd] to-white px-4 py-2"
+          >Penerimaan</span
+        >
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <div class="overflow-x-auto">
+          <table
+            class="min-w-full border border-gray-200 text-sm text-gray-700"
+          >
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th class="px-4 py-2 border">No</th>
+                <th class="px-4 py-2 border">Keterangan</th>
+                <th class="px-4 py-2 border">Kode</th>
+                <th class="px-4 py-2 border">Nama</th>
+                <th class="px-4 py-2 border">Nominal</th>
+                <th class="px-4 py-2 border">Januari</th>
+                <th class="px-4 py-2 border">Februari</th>
+                <th class="px-4 py-2 border">Maret</th>
+                <th class="px-4 py-2 border">April</th>
+                <th class="px-4 py-2 border">Mei</th>
+                <th class="px-4 py-2 border">Juni</th>
+                <th class="px-4 py-2 border">Juli</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">1</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">2</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+                  fuga sequi, modi recusandae incidunt quibusdam.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">3</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Adipisci sunt doloremque repellat.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">4</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Illo, impedit!
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="font-semibold bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center" colspan="5">Total</td>
+                <td class="px-4 py-2 border">Rp 25.000.000</td>
+                <td class="px-4 py-2 border">Rp 25.000.000</td>
+                <td class="px-4 py-2 border">Rp 25.000.000</td>
+                <td class="px-4 py-2 border">Rp 25.000.000</td>
+                <td class="px-4 py-2 border">-</td>
+                <td class="px-4 py-2 border">-</td>
+                <td class="px-4 py-2 border">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <span
+          class="font-semibold bg-gradient-to-r from-[#cefffd] to-white px-4 py-2"
+          >Pengeluaran</span
+        >
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <div class="overflow-x-auto">
+          <table
+            class="min-w-full border border-gray-200 text-sm text-gray-700"
+          >
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th class="px-4 py-2 border">No</th>
+                <th class="px-4 py-2 border">Keterangan</th>
+                <th class="px-4 py-2 border">Kode</th>
+                <th class="px-4 py-2 border">Nama</th>
+                <th class="px-4 py-2 border">Nominal</th>
+                <th class="px-4 py-2 border">Januari</th>
+                <th class="px-4 py-2 border">Februari</th>
+                <th class="px-4 py-2 border">Maret</th>
+                <th class="px-4 py-2 border">April</th>
+                <th class="px-4 py-2 border">Mei</th>
+                <th class="px-4 py-2 border">Juni</th>
+                <th class="px-4 py-2 border">Juli</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">1</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">2</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+                  fuga sequi, modi recusandae incidunt quibusdam.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">3</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Adipisci sunt doloremque repellat.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">4</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Illo, impedit!
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <span
+          class="font-semibold bg-gradient-to-r from-[#cefffd] to-white px-4 py-2"
+          >Data Laju Ajuan</span
+        >
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <div class="overflow-x-auto">
+          <table
+            class="min-w-full border border-gray-200 text-sm text-gray-700"
+          >
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th class="px-4 py-2 border">No</th>
+                <th class="px-4 py-2 border">Keterangan</th>
+                <th class="px-4 py-2 border">Kode</th>
+                <th class="px-4 py-2 border">Nama</th>
+                <th class="px-4 py-2 border">Nominal</th>
+                <th class="px-4 py-2 border">Januari</th>
+                <th class="px-4 py-2 border">Februari</th>
+                <th class="px-4 py-2 border">Maret</th>
+                <th class="px-4 py-2 border">April</th>
+                <th class="px-4 py-2 border">Mei</th>
+                <th class="px-4 py-2 border">Juni</th>
+                <th class="px-4 py-2 border">Juli</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">1</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">2</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic
+                  fuga sequi, modi recusandae incidunt quibusdam.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">3</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Adipisci sunt doloremque repellat.
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">4</td>
+                <td class="px-4 py-2 border">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Illo, impedit!
+                </td>
+                <td class="px-4 py-2 border">PMB</td>
+                <td class="px-4 py-2 border">pendaftaran pmb</td>
+                <td class="px-4 py-2 border">Rp 44.020.340</td>
+                <td class="px-4 py-2 border text-center">Rp 5.830.340</td>
+                <td class="px-4 py-2 border">Rp 432.820</td>
+                <td class="px-4 py-2 border">Rp 5.448.440</td>
+                <td class="px-4 py-2 border">Rp 916.560</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <h1 class="text-center font-bold text-xl mb-7">Realisasi Anggaran</h1>
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <div class="overflow-x-auto w-[80%] mx-auto">
+          <canvas id="anggaranChart"></canvas>
+        </div>
+      </section>
+
+      <!-- Tabel -->
+      <section class="bg-white p-6 rounded mt-7 shadow">
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <span
+          class="font-semibold bg-gradient-to-r from-[#cefffd] to-white px-4 py-2"
+          >Realisasi Anggaran</span
+        >
+        <div class="w-full h-[2px] bg-gray-100 my-4"></div>
+        <div class="overflow-x-auto">
+          <table
+            class="min-w-full border border-gray-200 text-sm text-gray-700"
+          >
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th
+                  class="px-4 py-2 border border-r"
+                  colspan="2"
+                  rowspan="2"
+                ></th>
+                <th class="px-4 py-2" colspan="5">Prosentase</th>
+              </tr>
+            </thead>
+            <thead class="bg-white text-gray-900">
+              <tr>
+                <th class="px-4 py-2 border">No</th>
+                <th class="px-4 py-2 border">Fakultas/Unit</th>
+                <th class="px-4 py-2 border">APBU</th>
+                <th class="px-4 py-2 border">APBU</th>
+                <th class="px-4 py-2 border">Realisasi</th>
+                <th class="px-4 py-2 border">Selisih</th>
+                <th class="px-4 py-2 border">Prosentase</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">1</td>
+                <td class="px-4 py-2 border">Fakultas AGAMA ISLAM</td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">2</td>
+                <td class="px-4 py-2 border">Fakultas EKONOMI & BISNIS</td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">3</td>
+                <td class="px-4 py-2 border">Fakultas FARMASI</td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">4</td>
+                <td class="px-4 py-2 border">Fakultas HUKUM</td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">5</td>
+                <td class="px-4 py-2 border">
+                  Fakultas ILMU SOSIAL DAN ILMU POLITIK
+                </td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+              <tr class="bg-white bg-gray-10 hover:bg-gray-100">
+                <td class="px-4 py-2 border text-center">6</td>
+                <td class="px-4 py-2 border">Fakultas KEDOKTERAN</td>
+                <td class="px-4 py-2 border">Rp 1.643.966.908</td>
+                <td class="px-4 py-2 border">Rp 1.637.825.000</td>
+                <td class="px-4 py-2 border">Rp 353.201.600</td>
+                <td class="px-4 py-2 border text-center">Rp 1.284.623.400</td>
+                <td class="px-4 py-2 border">21.57%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const userButton = document.getElementById("userButton");
+      const userDropdown = document.getElementById("userDropdown");
+
+      userButton.addEventListener("mouseover", () => {
+        userDropdown.classList.remove("hidden");
+      });
+      userButton.addEventListener("mouseleave", (e) => {
+        if (!userDropdown.matches(":hover")) {
+          userDropdown.classList.add("hidden");
+        }
+      });
+      userDropdown.addEventListener("mouseleave", () => {
+        userDropdown.classList.add("hidden");
+      });
+
+      // Data contoh
+      const data = [
+        { nama: "Rapat", total: 15000000, realisasi: 3000000 },
+        { nama: "Honorarium Mengajar", total: 20000000, realisasi: 8000000 },
+        { nama: "Honorarium Koreksi", total: 10000000, realisasi: 2500000 },
+        { nama: "Honorarium Praktikum", total: 12000000, realisasi: 6000000 },
+        { nama: "Ujian Tengah Semester", total: 8000000, realisasi: 2000000 },
+        { nama: "Ujian Akhir Semester", total: 10000000, realisasi: 4000000 },
+      ];
+
+      // Hitung persentase realisasi & sisa
+      const labels = data.map((item) => item.nama);
+      const realisasiPersen = data.map((item) =>
+        ((item.realisasi / item.total) * 100).toFixed(1)
+      );
+      const sisaPersen = data.map((item) =>
+        (100 - (item.realisasi / item.total) * 100).toFixed(1)
+      );
+
+      const ctx = document.getElementById("anggaranChart").getContext("2d");
+      new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: "Realisasi (%)",
+              data: realisasiPersen,
+              backgroundColor: "rgba(54, 162, 235, 0.7)",
+              borderColor: "rgba(54, 162, 235, 1)",
+              borderWidth: 1,
+            },
+            {
+              label: "Sisa (%)",
+              data: sisaPersen,
+              backgroundColor: "rgba(156, 163, 175, 0.7)", // abu-abu
+              borderColor: "rgba(156, 163, 175, 1)",
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function (value) {
+                  return value + "%";
+                },
+              },
+            },
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let idx = context.dataIndex;
+                  let item = data[idx];
+                  if (context.dataset.label === "Realisasi (%)") {
+                    return [
+                      `Realisasi: Rp${item.realisasi.toLocaleString()}`,
+                      `Persen: ${realisasiPersen[idx]}%`,
+                    ];
+                  } else {
+                    let sisa = item.total - item.realisasi;
+                    return [
+                      `Sisa: Rp${sisa.toLocaleString()}`,
+                      `Persen: ${sisaPersen[idx]}%`,
+                    ];
+                  }
+                },
+              },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
