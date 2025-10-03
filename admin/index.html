@@ -22,15 +22,76 @@
         <nav class="flex-1 p-2 space-y-2">
           <!-- Dashboard -->
           <a
-            href="/perencanaan"
+            href=""
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Dashboard</a
           >
           <!-- MENU SICAKEP -->
           <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicakep</div>
+          <!-- Master -->
+          <div x-data="{ open: false }">
+            <button
+              @click="open = !open"
+              class="w-full flex justify-between items-center px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+            >
+              <span>Master</span>
+              <svg
+                :class="{'rotate-90': open}"
+                class="w-4 h-4 transform transition-transform"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+            <div x-show="open" class="ml-6 mt-1 space-y-1">
+              <a
+                href="/admin/manajemen-role"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Manajemen Role</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Manajemen User</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Semester</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Unit/Fakultas</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Kegiatan Tridharma</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Kerja Sama</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
+                >Jenis Rekan Kerja Sama</a
+              >
+            </div>
+          </div>
 
           <a
-            href="#"
+            href="/admin/indikator-kinerja-lldikti"
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Indikator Kinerja LLDIKTI</a
           >
@@ -89,12 +150,12 @@
           <!-- MENU SICANTIK -->
           <div class="px-4 py-2 text-[0.8rem] text-gray-400">Menu Sicantik</div>
           <a
-            href="#"
+            href=""
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Belanja Pegawai</a
           >
           <a
-            href="/perencanaan/breakdown-anggaran"
+            href="#"
             class="block px-4 py-2 rounded hover:bg-gradient-to-r from-[#cefffd] to-white"
             >Breakdown Anggaran</a
           >
@@ -215,7 +276,7 @@
                 alt=""
                 class="w-[25px] h-[29px]"
               />
-              <span>Perencanaan</span>
+              <span>Admin</span>
               <svg
                 class="w-4 h-4 transform transition-transform rotate-90"
                 xmlns="http://www.w3.org/2000/svg"
@@ -237,7 +298,7 @@
             class="bg-white w-full rounded absolute right-0 top-[38px] mt-2 hidden"
           >
             <a
-              href="#"
+              href=""
               class="p-2 block w-full border border-white hover:bg-gradient-to-r from-[#cefffd] to-white"
             >
               Profile
@@ -261,9 +322,9 @@
       <section class="bg-white p-6 rounded mt-7 shadow">
         <p class="text-gray-600">
           Download manual book
-          <a href="#" class="text-[#02d4d8] font-semibold">disini</a>, Download
+          <a href="" class="text-[#02d4d8] font-semibold">disini</a>, Download
           manual book Break down anggaran
-          <a href="#" class="text-[#02d4d8] font-semibold">disini</a>.
+          <a href="" class="text-[#02d4d8] font-semibold">disini</a>.
         </p>
         <div class="w-full h-[2px] bg-gray-100 my-4"></div>
         <h1 class="text-xl font-semibold">Selamat Datang Di</h1>
