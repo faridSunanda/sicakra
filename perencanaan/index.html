@@ -9,6 +9,51 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
       defer
     ></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- DataTables Core -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/datatables.net-dt@1.13.8/css/jquery.dataTables.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net@1.13.8/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables Buttons Extension -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/datatables.net-buttons-dt@2.4.3/css/buttons.dataTables.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net-buttons@2.4.3/js/dataTables.buttons.min.js"></script>
+
+    <!-- Export dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+    <!-- Buttons for export -->
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net-buttons@2.4.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/datatables.net-buttons@2.4.3/js/buttons.print.min.js"></script>
+    <style>
+      /* Hilangkan float bawaan DataTables */
+
+      div.dataTables_wrapper div.dt-buttons {
+        /* float: none; */
+        /* display: flex; */
+        /* align-items: center; */
+        /* border: 1px solid black; */
+        clear: both;
+        margin-top: 10px;
+      }
+      div.dataTables_wrapper div.dataTables_length {
+        clear: both;
+        /* border: 1px solid black; */
+      }
+      div.dataTables_wrapper div.dataTables_filter {
+        /* border: 1px solid black; */
+        float: none;
+      }
+    </style>
   </head>
   <body class="flex text-sm">
     <!-- Tempat sidebar masuk -->
@@ -199,7 +244,7 @@
       class="w-full flex-1 bg-[#F5F5F5] relative p-6 pt-[120px] text-gray-700 h-screen overflow-y-auto"
     >
       <header
-        class="border border-2 w-full bg-white flex justify-between items-center p-4 fixed top-0 right-0"
+        class="border border-2 w-full bg-white flex justify-between items-center p-4 fixed top-0 right-0 z-50"
       >
         <div class="w-[170px]">
           <img
@@ -276,9 +321,7 @@
           Laju Anggaran Unit/Fakultas Tahun 2025
         </h1>
         <div class="overflow-x-auto">
-          <table
-            class="min-w-full border border-gray-200 text-sm text-gray-700"
-          >
+          <table class="min-w-full py-4 text-sm text-gray-700 mydatatable">
             <thead class="bg-white text-gray-900">
               <tr>
                 <th class="px-4 py-2 border">No</th>
@@ -308,6 +351,7 @@
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
               </tr>
               <tr class="bg-white bg-gray-10 hover:bg-gray-100">
                 <td class="px-4 py-2 border text-center">2</td>
@@ -321,6 +365,7 @@
                 <td class="px-4 py-2 border">VGA</td>
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
                 <td class="px-4 py-2 border text-green-600 font-medium">-</td>
               </tr>
               <tr class="bg-white bg-gray-10 hover:bg-gray-100">
@@ -336,6 +381,7 @@
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
               </tr>
               <tr class="bg-white bg-gray-10 hover:bg-gray-100">
                 <td class="px-4 py-2 border text-center">4</td>
@@ -348,6 +394,7 @@
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border">Rp 12.000.000,00</td>
                 <td class="px-4 py-2 border text-green-600 font-medium">-</td>
+                <td class="px-4 py-2 border text-green-600 font-medium">-</td>
               </tr>
             </tbody>
           </table>
@@ -356,6 +403,19 @@
     </main>
 
     <script>
+      $(document).ready(function () {
+        $(".mydatatable").DataTable({
+          dom: "lBfrtip",
+          buttons: ["copyHtml5", "csvHtml5", "excelHtml5", "pdfHtml5", "print"],
+          initComplete: function () {
+            // Nambahin Class
+            $("div.dataTables_filter input").addClass(
+              "border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-0 focus:border-gray-400"
+            );
+          },
+        });
+      });
+
       const userButton = document.getElementById("userButton");
       const userDropdown = document.getElementById("userDropdown");
 
