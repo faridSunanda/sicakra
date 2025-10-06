@@ -35,22 +35,27 @@
     <script src="https://cdn.jsdelivr.net/npm/datatables.net-buttons@2.4.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datatables.net-buttons@2.4.3/js/buttons.print.min.js"></script>
     <style>
-      /* Hilangkan float bawaan DataTables */
+      /* Scrollbar Style */
+      aside::-webkit-scrollbar {
+        width: 5px;
+      }
+      main::-webkit-scrollbar {
+        width: 8px;
+      }
+      aside::-webkit-scrollbar-thumb,
+      main::-webkit-scrollbar-thumb {
+        background: #c2c2c2;
+        border-radius: 10px;
+      }
 
       div.dataTables_wrapper div.dt-buttons {
-        /* float: none; */
-        /* display: flex; */
-        /* align-items: center; */
-        /* border: 1px solid black; */
         clear: both;
         margin-top: 10px;
       }
       div.dataTables_wrapper div.dataTables_length {
         clear: both;
-        /* border: 1px solid black; */
       }
       div.dataTables_wrapper div.dataTables_filter {
-        /* border: 1px solid black; */
         float: none;
       }
     </style>
